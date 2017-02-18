@@ -1,0 +1,67 @@
+<div class="col-md-10">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="content-box-large">
+        <div class="panel-heading">
+          <div class="panel-title">Add Admin</div>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
+            <div class="form-group" ngClass="{{haserrorcls('firstname')}}">
+              <label class="col-sm-2 control-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="First Name" [formControl]="dataForm.controls['firstname']">
+                <div class="help-block" ngClass="{{showerrorcls('firstname')}}">First Name is required</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('lastname')}}">
+              <label class="col-sm-2 control-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Last Name" [formControl]="dataForm.controls['lastname']">
+                <div class="help-block" ngClass="{{showerrorcls('lastname')}}">Last Name is required</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('email')}}">
+              <label class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" placeholder="Email" [formControl]="dataForm.controls['email']">
+                <div class="help-block" ngClass="{{showerrorcls('email')}}">Email is required</div>
+                <div class="help-block" ngClass="{{showerrorcls('email','validemail')}}">Enter valid email id</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('password')}}">
+              <label class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" placeholder="Password" [formControl]="dataForm.controls['password']">
+                <div class="help-block" ngClass="{{showerrorcls('password','required')}}">Password is required</div>
+                <div class="help-block" ngClass="{{showerrorcls('password','minlength')}}">Password must be minimum of 8 characters</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('confpassword')}}">
+              <label class="col-sm-2 control-label">Confirm Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" placeholder="Confirm Password"  [formControl]="dataForm.controls['confpassword']">
+                <div class="help-block" ngClass="{{showerrorcls('confpassword')}}">Confirm Password is required</div>
+                <div class="help-block" ngClass="{{showerrorcls('confpassword','match')}}">Password does not match</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('phone')}}">
+              <label class="col-sm-2 control-label">Phone No</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Phone No" [formControl]="dataForm.controls['phone']">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

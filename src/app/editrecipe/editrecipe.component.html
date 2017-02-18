@@ -1,0 +1,144 @@
+<div class="col-md-10">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="content-box-large">
+        <div class="panel-heading">
+          <div class="panel-title">Add Food</div>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" role="form" novalidate [formGroup]="dataForm" (ngSubmit)="dosubmit(dataForm.value)">
+            <div class="form-group" ngClass="{{haserrorcls('receipename')}}">
+              <label class="col-sm-2 control-label">Receipe Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Receipe Name" [formControl]="dataForm.controls['receipename']">
+                <div class="help-block" ngClass="{{showerrorcls('receipename')}}">Receipe Name is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Descripttion</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" placeholder="Descripttion" [formControl]="dataForm.controls['descripttion']"></textarea>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('preptime')}}">
+              <label class="col-sm-2 control-label">Prepartion Time</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" placeholder="Min" [formControl]="dataForm.controls['preptime']">
+                <div class="help-block" ngClass="{{showerrorcls('preptime')}}">Prepartion Time is required</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('cooktime')}}">
+              <label class="col-sm-2 control-label">Cook Time</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" placeholder="Min" [formControl]="dataForm.controls['cooktime']">
+                <div class="help-block" ngClass="{{showerrorcls('cooktime')}}">Cook Time is required</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('yields')}}">
+              <label class="col-sm-2 control-label">Recipe yields</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="serving" [formControl]="dataForm.controls['yields']">
+                <div class="help-block" ngClass="{{showerrorcls('yields')}}">Recipe yields is required</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('servingsize')}}">
+              <label class="col-sm-2 control-label">Serving Size</label>
+              <div class="col-sm-5">
+                <input type="number" class="form-control" [formControl]="dataForm.controls['servingsize']">
+                <div class="help-block" ngClass="{{showerrorcls('servingsize')}}">Serving Size is required</div>
+              </div>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" [formControl]="dataForm.controls['servingtype']">
+                <div class="help-block" ngClass="{{showerrorcls('servingtype')}}">Serving Type is required</div>
+              </div>
+            </div>
+            <div class="form-group" ngClass="{{haserrorcls('category')}}">
+              <label class="col-sm-2 control-label">Category</label>
+              <div class="col-sm-10">
+                <select class="form-control" [formControl]="dataForm.controls['category']">
+                  <option value="" class="">Select category</option>
+                  <option *ngFor="let item of recipecat; let i = index" value="{{item._id}}">{{item.name}}</option>
+                </select>
+                <div class="help-block" ngClass="{{showerrorcls('receipename')}}">Category is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Dish Type</label>
+              <div class="col-sm-10">
+                <select class="form-control" [formControl]="dataForm.controls['dishtype']">
+                  <option value="0">Side Dish</option>
+                  <option value="1">Main Dish</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Is this a breakfasty food?</label>
+              <div class="col-sm-2">
+                <input type="checkbox" value="1" [formControl]="dataForm.controls['isbreakfast']">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Can this easily be made for 1 serving?</label>
+              <div class="col-sm-2">
+                <input type="checkbox" value="1" [formControl]="dataForm.controls['isoneserving']">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Does this make good leftovers?</label>
+              <div class="col-sm-2">
+                <input type="checkbox" value="1" [formControl]="dataForm.controls['leftovers']">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Image</label>
+              <div class="col-sm-10">
+
+                <input type="file"
+                       ngFileSelect
+                       [options]="basicOptions"
+                       (onUpload)="handleUpload($event)">
+
+                <div *ngIf="progress">
+                  Uploading: {{ progress }}%
+                </div>
+                <div *ngIf="uploadedfilesrc" class="browsefileblockimg">
+                  <img src="{{uploadedfilesrc}}" style="max-height: 200px; max-width: 200px;">
+                </div>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Ingredients</label>
+              <div class="col-sm-10">
+                <div class="ingrblock" style="max-height: 300px; overflow: auto; margin-bottom: 10px;">
+                  <div class="block5555" *ngFor="let item of ingredients; let i = index" style=" width: 300px; display: flex; border-bottom: 1px solid #000000; height: 50px;">
+                    <div class="subblock1" style=" width: 100%;">
+                      <img src="{{(item.image != '')?filesrc+item.image:'assets/images/foodicon.ico'}}" style="max-height: 50px; max-width: 50px;" /> {{item.foodname}}
+                    </div>
+                  </div>
+                </div>
+                <input type="button" value="Add Ingredients" (click)="addIngr = 1" class="btn btn-primary">
+                <div class="ingrblock" *ngIf="addIngr" style="max-height: 300px; overflow: auto; margin-top: 10px;">
+                  <div class="block5555" *ngFor="let item of foodlist; let i = index" style=" width: 300px; display: flex; border-bottom: 1px solid #000000; height: 50px;">
+                    <div class="subblock1" style=" width: 90%;">
+                      <img src="{{(item.image != '')?filesrc+item.image:'assets/images/foodicon.ico'}}" style="max-height: 50px; max-width: 50px;" /> {{item.foodname}}
+                    </div>
+                    <div class="subblock2" style="cursor: pointer; text-decoration: underline; line-height: 48px;" (click)="addFood(item)">Add</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

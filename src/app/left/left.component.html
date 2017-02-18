@@ -1,0 +1,52 @@
+<div class="col-md-2" style="padding-left: 0;">
+  <div class="sidebar content-box" style="display: block; margin-bottom: 0;">
+    <ul class="nav">
+      <!-- Main menu -->
+      <li class="current"><a [routerLink]="['/profile']"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+      <li class="submenu">
+        <a href="javascript:void(0)">
+          <i class="glyphicon glyphicon-list"></i> Admin
+          <span class="caret pull-right"></span>
+        </a>
+        <!-- Sub menu -->
+        <ul>
+          <li><a [routerLink]="['/add-admin']">Add Admin</a></li>
+          <li><a [routerLink]="['/admin-list']">Admin List</a></li>
+        </ul>
+      </li>
+      <li class="submenu">
+        <a href="javascript:void(0)">
+          <i class="glyphicon glyphicon-list"></i> Recipe Category
+          <span class="caret pull-right"></span>
+        </a>
+        <!-- Sub menu -->
+        <ul>
+          <li><a [routerLink]="['/add-recipe-category']">Add Recipe Category</a></li>
+          <li><a [routerLink]="['/recipe-category-list']">Recipe Category List</a></li>
+        </ul>
+      </li>
+      <li class="submenu">
+        <a href="javascript:void(0)">
+          <i class="glyphicon glyphicon-list"></i> Food
+          <span class="caret pull-right"></span>
+        </a>
+        <!-- Sub menu -->
+        <ul>
+          <li><a [routerLink]="['/add-food']">Add Food</a></li>
+          <li><a [routerLink]="['/food-list']">Food List</a></li>
+        </ul>
+      </li>
+      <li class="submenu">
+        <a href="javascript:void(0)">
+          <i class="glyphicon glyphicon-list"></i> Recipe
+          <span class="caret pull-right"></span>
+        </a>
+        <!-- Sub menu -->
+        <ul>
+          <li><a [routerLink]="['/add-recipe']">Add Recipe</a></li>
+          <li><a [routerLink]="['/recipe-list']">Recipe List</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

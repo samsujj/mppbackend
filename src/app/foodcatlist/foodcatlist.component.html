@@ -1,0 +1,82 @@
+<div class="col-md-10">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="content-box-large">
+        <div class="panel-heading">
+          <div class="panel-title">Recipe Category List</div>
+          <div style="float: right"><a [routerLink]="['/add-recipe-category']">Add Recipe Category</a></div>
+        </div>
+        <div class="panel-body">
+          <div class="dataTables_wrapper form-inline" role="grid">
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="dataTables_length" style="display: none">
+                  <label>
+                    <select size="1" name="example_length" aria-controls="example">
+                      <option value="10" selected="selected">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    records per page</label>
+                </div>
+              </div>
+              <div class="col-xs-6" style="display: none;">
+                <div class="dataTables_filter">
+                  <label>Search: <input type="text" aria-controls="example"></label>
+                </div>
+              </div>
+            </div>
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of adminlist; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{(item.status==1)?'Active':'Inactive'}}</td>
+                <td>
+                  <a [routerLink]="['/edit-recipe-category',item._id]">Edit</a>
+                  <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" (click)="delConfirm(item._id)">Delete</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+            <div class="row" style="display: none;"><div class="col-xs-6"><div class="dataTables_info" id="example_info">Showing 1 to 10 of 57 entries</div></div><div class="col-xs-6"><div class="dataTables_paginate paging_bootstrap"><ul class="pagination"><li class="prev disabled"><a href="#">← Previous</a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#">Next → </a></li></ul></div></div></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog"  id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirm delete</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to delete this receipe category?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="admindel()">Yes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
